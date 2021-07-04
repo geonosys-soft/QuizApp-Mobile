@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>1057257465177-sq4ba6lq08pp4p0ohfb025roj159v8lq.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.1057257465177-sq4ba6lq08pp4p0ohfb025roj159v8lq</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>1057257465177-5om2c9jt5glquo3k65b9au8sh652bqac.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCn-nThLhlo7s7dFaybbmhwyShLHidvZ6Q</string>
+	<key>GCM_SENDER_ID</key>
+	<string>1057257465177</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>org.geonosys.QuizyTime</string>
+	<key>PROJECT_ID</key>
+	<string>quizytime-3e433</string>
+	<key>STORAGE_BUCKET</key>
+	<string>quizytime-3e433.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:1057257465177:ios:f9571fc0868511b9c9d848</string>
+	<key>DATABASE_URL</key>
+	<string>https://quizytime-3e433.firebaseio.com</string>
+</dict>
+</plist>
