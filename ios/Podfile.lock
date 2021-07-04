@@ -89,20 +89,16 @@ PODS:
     - GoogleUtilities/Logger
   - GoogleUtilities/UserDefaults (6.7.2):
     - GoogleUtilities/Logger
-  - GTMAppAuth (1.1.0):
+  - GTMAppAuth (1.2.2):
     - AppAuth/Core (~> 1.4)
-    - GTMSessionFetcher (~> 1.4)
-  - GTMSessionFetcher (1.5.0):
-    - GTMSessionFetcher/Full (= 1.5.0)
+    - GTMSessionFetcher/Core (~> 1.5)
   - GTMSessionFetcher/Core (1.5.0)
-  - GTMSessionFetcher/Full (1.5.0):
-    - GTMSessionFetcher/Core (= 1.5.0)
   - nanopb (0.3.9011):
     - nanopb/decode (= 0.3.9011)
     - nanopb/encode (= 0.3.9011)
   - nanopb/decode (0.3.9011)
   - nanopb/encode (0.3.9011)
-  - OneSignal (3.4.4)
+  - OneSignal (3.5.2)
   - OneSignalXCFramework (3.4.4)
   - PromisesObjC (1.2.12)
   - RCTRequired (0.61.5)
@@ -510,10 +506,10 @@ SPEC CHECKSUMS:
   GoogleDataTransportCCTSupport: 0f39025e8cf51f168711bd3fb773938d7e62ddb5
   GoogleSignIn: 7137d297ddc022a7e0aa4619c86d72c909fa7213
   GoogleUtilities: 7f2f5a07f888cdb145101d6042bc4422f57e70b3
-  GTMAppAuth: 197a8dabfea5d665224aa00d17f164fc2248dab9
+  GTMAppAuth: ad5c2b70b9a8689e1a04033c9369c4915bfcbe89
   GTMSessionFetcher: b3503b20a988c4e20cc189aa798fd18220133f52
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
-  OneSignal: d20ee5601f44496573c7abe95923a04d1b49977f
+  OneSignal: 055f4c94ee8af87417777ad33fb807cea70df320
   OneSignalXCFramework: eaf286b7438aa1f030f03e5fa9f1c79ede5d8f04
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
   RCTRequired: b153add4da6e7dbc44aebf93f3cf4fcae392ddf1
@@ -551,6 +547,6 @@ SPEC CHECKSUMS:
   RNSound: c980916b596cc15c8dcd2f6ecd3b13c4881dbe20
   Yoga: f2a7cd4280bfe2cca5a7aed98ba0eb3d1310f18b
 
-PODFILE CHECKSUM: b24856ced941591be3b303d3025c688086975e7a
+PODFILE CHECKSUM: d4eefefddd1811f36865437174d20c6b27939013
 
 COCOAPODS: 1.10.1
