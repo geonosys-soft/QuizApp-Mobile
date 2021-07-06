@@ -53,7 +53,8 @@ class ScienceScreen extends Component {
             isCorrectAns: false,
             refresh: false,
             wrongAnsData: 0,
-            invisibleModal: false
+            invisibleModal: false,
+            timer: 60
 
 
         }
@@ -67,7 +68,7 @@ class ScienceScreen extends Component {
 
         data = this.props.data;
 
-        console.log("all data", data);
+        console.log("all data =====", data);
         if (data.length !== 0) {
             question = data[0].Question;
             optionA = data[0].OPA;
@@ -89,8 +90,15 @@ class ScienceScreen extends Component {
                 nmarkData: nmark
             })
         }
+        this.setInterval();
 
-
+    }
+ 
+    setInterval() {
+        this.interval = setInterval(
+            () => this.setState((prevState) => ({ timer: prevState.timer - 1 })),
+            1000
+        );
     }
 
     answerValue = (answer) => {
@@ -170,16 +178,26 @@ class ScienceScreen extends Component {
     static getDerivedStateFromProps(nextProps, prevState) {
 
         if (nextProps && nextProps.nextQues && nextProps.nextQues.length !== 0) {
+         
+            var nextQuestion = nextProps.nextQues.questionData;
+            var nextOptA = nextProps.nextQues.optA;
+            var nextOptB = nextProps.nextQues.optB;
+            var nextOptC = nextProps.nextQues.optC;
+            var nextOptD = nextProps.nextQues.optD;
+            var nextAns = nextProps.nextQues.answerOtn;
+            var correctMark  = nextProps.nextQues.markData;
+            var wrongMark  = nextProps.nextQues.nmarkData;
+
             return {
 
-                questionData: questionS,
-                optA: optionAS,
-                optB: optionBS,
-                optC: optionCS,
-                optD: optionDS,
-                answerOtn: correctAnsS,
-                markData: markS,
-                nmarkData: nmarkS
+                questionData: nextQuestion,
+                optA: nextOptA,
+                optB: nextOptB,
+                optC: nextOptC,
+                optD: nextOptD,
+                answerOtn: nextAns,
+                markData: correctMark,
+                nmarkData: wrongMark
 
             }
         }
@@ -220,6 +238,17 @@ class ScienceScreen extends Component {
                         <View style={{ flex: 0.40 }}>
 
                             <LinearGradient start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} colors={['#474747', '#312d2d', '#1b1515']} style={{ flex: 40, alignItems: 'center', justifyContent: 'center', margin: 20, borderWidth: 1, borderColor: '#000000', borderRadius: 6, left: 10, right: 5 }} >
+                                <View style={{
+                                    flex: 0.10,
+                     
+                                }}>
+                                    <Text style={{
+                                        color: '#fff',
+                                        fontSize: 18,
+                                        fontWeight: 'bold',
+                                        alignSelf: 'flex-end'
+                                    }}>00:{this.state.timer}</Text>
+                                </View>
                                 <Text style={{
                                     marginTop: 80,
                                     fontWeight: 'bold',
