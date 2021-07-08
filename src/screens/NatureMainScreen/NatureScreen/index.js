@@ -52,7 +52,8 @@ class NatureScreen extends Component {
             isMenuVisible: false,
             isCorrectAns: false,
             wrongAnsData: 0,
-            invisibleModal: false
+            invisibleModal: false,
+            timer: 60
         }
 
     }
@@ -83,7 +84,13 @@ class NatureScreen extends Component {
             })
 
         }
-
+        this.setInterval();
+    }
+    setInterval() {
+        this.interval = setInterval(
+            () => this.setState((prevState) => ({ timer: prevState.timer - 1 })),
+            1000
+        );
     }
 
     answerValue = (answer) => {
@@ -125,13 +132,15 @@ class NatureScreen extends Component {
     }
     btnWas =()=> {
         this.setState({
-            invisibleModal: true
+            invisibleModal: true,
+            timer: 60
         })
     }
 
     wrongClose =()=> {
         this.setState({
-            isMenuVisible: false
+            isMenuVisible: false,
+            timer: 60
         })
     }
 
@@ -141,6 +150,10 @@ class NatureScreen extends Component {
         if(next === 11){
             this.props.navigation.navigate("SuccessScreen");
         }else {
+            this.setState({
+                
+                timer: 60
+            })
             this.props.newCount(next, data);
         }
 
@@ -164,7 +177,19 @@ class NatureScreen extends Component {
 
     }
 
-
+    componentDidUpdate() {
+        if (this.state.timer === 0) {
+            clearInterval(this.interval);
+            // this.setState({isDisable:true})
+            next = wrongAnsData++;
+            if (next != 11) {
+                this.setState({ timer: 60 })
+                this.setInterval();
+                this.props.newCount(next, data);
+            } 
+        }
+    
+}
     static getDerivedStateFromProps(nextProps, prevState) {
 
         if (nextProps && nextProps.nextQues && nextProps.nextQues.length !== 0) {
@@ -185,7 +210,8 @@ class NatureScreen extends Component {
 
     componentWillUnmount() {
         wrongAnsData = 1;
-        this.props.storeCleaner()
+        this.props.storeCleaner();
+        clearInterval(this.interval);
     }
 
 
@@ -218,6 +244,17 @@ class NatureScreen extends Component {
                         <View style={{ flex: 0.40 }}>
 
                             <LinearGradient start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} colors={['#474747', '#312d2d', '#1b1515']} style={{ flex: 40, alignItems: 'center', justifyContent: 'center', margin: 20, borderWidth: 1, borderColor: '#000000', borderRadius: 6, left: 10, right: 5 }} >
+                            <View style={{
+                                    flex: 0.10,
+                     
+                                }}>
+                                    <Text style={{
+                                        color: '#fff',
+                                        fontSize: 18,
+                                        fontWeight: 'bold',
+                                        alignSelf: 'flex-end'
+                                    }}>00:{this.state.timer}</Text>
+                                </View>
                                 <Text style={{ 
                                       marginTop: 80,
                                       fontWeight: 'bold',

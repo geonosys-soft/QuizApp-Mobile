@@ -110,8 +110,9 @@ class ScienceScreen extends Component {
     wrongAns = (value) => {
         this.setState({
             isMenuVisible: value,
-            invisibleModal: false
+            invisibleModal: false,
         })
+
         setTimeout(() => {
 
             if (wrongAnsData === 10) {
@@ -123,8 +124,9 @@ class ScienceScreen extends Component {
     correctAns = (value, count) => {
         this.setState({
             isCorrectAns: value,
-            invisibleModal: false
+            invisibleModal: false,
         })
+        
         setTimeout(() => {
             this.closModal()
             if (wrongAnsData === 11) {
@@ -134,12 +136,14 @@ class ScienceScreen extends Component {
     }
     closModal = () => {
         this.setState({
-            isCorrectAns: false
+            isCorrectAns: false,
+            timer: 60
         })
     }
     wrongClose = () => {
         this.setState({
-            isMenuVisible: false
+            isMenuVisible: false,
+            timer: 60
         })
     }
 
@@ -148,6 +152,11 @@ class ScienceScreen extends Component {
         if (next === 11) {
             this.props.navigation.navigate("SuccessScreen");
         } else {
+            this.setState({
+                
+                timer: 60
+            })
+       
             this.props.newCount(next, data);
         }
 
@@ -173,6 +182,21 @@ class ScienceScreen extends Component {
             this.props.newCount(next, data);
         }
 
+    }
+
+    
+        componentDidUpdate() {
+            if (this.state.timer === 0) {
+                clearInterval(this.interval);
+                // this.setState({isDisable:true})
+                next = wrongAnsData++;
+                if (next != 11) {
+                    this.setState({ timer: 60 })
+                    this.setInterval();
+                    this.props.newCount(next, data);
+                } 
+            }
+        
     }
 
     static getDerivedStateFromProps(nextProps, prevState) {
@@ -206,6 +230,7 @@ class ScienceScreen extends Component {
     componentWillUnmount() {
         wrongAnsData = 1;
         this.props.storeCleaner()
+        clearInterval(this.interval);
     }
 
 
