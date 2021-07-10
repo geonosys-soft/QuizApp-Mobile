@@ -16,7 +16,7 @@ import {
   import { APP_FONT_FAMILY } from '../../config';
 
   import { connect } from 'react-redux';
-  import { questions } from '../../actions/questions';
+  import { questions,translatedQuestion } from '../../actions/questions';
   
   import Header from '../../components/Header';
   import SpaceButton from '../../components/SpaceButton';
@@ -35,7 +35,7 @@ import {
     constructor(props) {
         super(props);
          this.state = {
-             spaceQue: [],
+             spaceQue: this.props && this.props.allquestions && this.props.allquestions.questions,
              initialLoading: true,
              allData: []
 
@@ -44,21 +44,28 @@ import {
     }
 
     componentDidMount() {
-
-        const params = {
-            "catid": '1'
+       
+        if(this.props.route.params.language !== 'ml') {
+            const params = {
+                "catid": '1',
+            }
+            this.props.questions(params);
+        }else {
+             const params = {
+            "catid": '1',
+            lang: this.props.route.params.language
         }
-        this.props.questions(params);
+        this.props.translatedQuestion(params);
     }
-    get loaderStatus() {
-        return tthis.props.allquestions.questions;
-      }
+    }
+  
     static getDerivedStateFromProps(nextProps, prevState) {
+        console.log("All props ? data", nextProps);
      
-        if(nextProps && nextProps.allquestions && 
-            nextProps.allquestions.questions) {
+        if(nextProps && nextProps.allquestions && nextProps.allquestions.length !== 0 &&
+            nextProps.allquestions.questions.length !== 0) {
                 var qustionQ = nextProps.allquestions.questions;
-                console.log("All props ? data", qustionArray);
+                console.log("All props ? data", qustionQ);
             return {
                 spaceQue: qustionQ,
                 initialLoading: false
@@ -71,7 +78,7 @@ import {
 
 
     render() {
-        console.log("question no=====", this.state.spaceQue)
+       
         return(
             <View style={{ flex: 1 }}>
                 {this.state.initialLoading ?
@@ -98,4 +105,4 @@ import {
     }
 }
 
- export default connect(mapStateToProps, { questions })(SpaceMainScreen);
+ export default connect(mapStateToProps, { questions,translatedQuestion })(SpaceMainScreen);

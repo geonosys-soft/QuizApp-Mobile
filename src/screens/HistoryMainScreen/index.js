@@ -11,7 +11,7 @@ import {
   } from 'react-native-indicators';
   import LinearGradient from 'react-native-linear-gradient';
   import { connect } from 'react-redux';
-  import { questionsHistory } from '../../actions/questions';
+  import { questionsHistory, translatedquestionsHistory } from '../../actions/questions';
   
   import HistoyScreen from './HistoryScreen';
 
@@ -38,13 +38,26 @@ import {
             "catid": '4'
         }
         this.props.questionsHistory(params);
+
+        if(this.props.route.params.language !== 'ml') {
+            const params = {
+                "catid": '4'
+            }
+            this.props.questionsHistory(params);
+        }else {
+             const params = {
+            "catid": '4',
+            lang: this.props.route.params.language
+        }
+        this.props.translatedquestionsHistory(params);
+    }
     }
     
     static getDerivedStateFromProps(newProps, prevState) {
      
-        if(newProps && newProps.allquestions && 
-            newProps.allquestions.historyque) {
-                console.log("next props===", newProps.allquestions.historyque)
+        if(newProps && newProps.allquestions && newProps.allquestions.length !== 0 &&
+            newProps.allquestions.historyque.length !== 0) {
+           
                 qustionArray = newProps.allquestions.historyque;
            
             return {
@@ -59,7 +72,7 @@ import {
 
 
     render() {
-        console.log("All props ? data", this.state.allquestion);
+       
         return(
             <View style={{ flex: 1 }}>
                 {this.state.allquestion.length !== 10 ?
@@ -86,4 +99,4 @@ import {
     }
 }
 
- export default connect(mapStateToProps, { questionsHistory })(HistoryMainScreen);
+ export default connect(mapStateToProps, { questionsHistory, translatedquestionsHistory })(HistoryMainScreen);

@@ -47,6 +47,45 @@ import {
       }
       }
   }
+  export const translatedQuestion = (formValues) => {
+
+    return async function(dispatch) {
+      try {
+      var paymentRequest ={
+        CatID: formValues.catid,
+        Lang: formValues.lang
+      }
+      var config = {
+        method: 'POST',
+        url: `${BASE_URL}/OLQuestions`,
+        headers: {
+            'content-type': 'application/json'
+       
+        },
+        data: paymentRequest
+    };
+
+    const response = await axios(config)
+   
+        dispatch({
+        type: QUESTIONS,
+        payload: response.data
+        })
+      }catch (e) {
+        if (e.response) {
+            console.log(e.response);
+            // console.log(e.response.data.errors.message);
+            // console.log(error.response.status);
+            // console.log(error.response.headers);
+        } else if (e.request) {
+            console.log(e.request);
+        } else {
+            console.log('Error', e.message);
+        }
+        // console.log(e.config);
+    }
+    }
+}
 
   export const sumbitAnswer = (formValues) => {
     console.log(formValues,'====kokoman');
@@ -128,6 +167,45 @@ export const questionsNature = (formValues) => {
   }
 }
 
+export const translatequestionsNature = (formValues) => {
+
+  return async function(dispatch) {
+    try {
+    var paymentRequest ={
+      CatID: formValues.catid,
+      Lang: formValues.lang
+    }
+    var config = {
+      method: 'POST',
+      url: `${BASE_URL}/OLQuestions`,
+      headers: {
+          'content-type': 'application/json'
+     
+      },
+     
+      data: paymentRequest
+  };
+
+  const response = await axios(config)
+ 
+      dispatch({
+      type: NATURE_QUE,
+      payload: response.data
+      })
+    }catch (e) {
+      if (e.response) {
+          console.log(e.response);
+     
+      } else if (e.request) {
+          console.log(e.request);
+      } else {
+          console.log('Error', e.message);
+      }
+      // console.log(e.config);
+  }
+  }
+}
+
 export const questionsHistory = (formValues) => {
 
   return async function(dispatch) {
@@ -166,7 +244,44 @@ export const questionsHistory = (formValues) => {
   }
   }
 }
+export const translatedquestionsHistory = (formValues) => {
 
+  return async function(dispatch) {
+    try {
+    var paymentRequest ={
+      CatID: formValues.catid,
+      Lang: formValues.lang
+    }
+    var config = {
+      method: 'POST',
+      url: `${BASE_URL}/OLQuestions`,
+      headers: {
+          'content-type': 'application/json'
+     
+      },
+      data: paymentRequest
+  };
+
+  const response = await axios(config)
+
+ 
+      dispatch({
+      type: HISTORY_QUE,
+      payload: response.data
+      })
+    }catch (e) {
+      if (e.response) {
+          console.log(e.response);
+     
+      } else if (e.request) {
+          console.log(e.request);
+      } else {
+          console.log('Error', e.message);
+      }
+      // console.log(e.config);
+  }
+  }
+}
 export const questionsScience = (formValues) => {
 
   return async function(dispatch) {
@@ -185,8 +300,6 @@ export const questionsScience = (formValues) => {
   };
 
   const response = await axios(config)
-
-  console.log("azhar", response.data)
  
       dispatch({
       type: SCIENCE_QUE,
@@ -196,6 +309,45 @@ export const questionsScience = (formValues) => {
       if (e.response) {
           console.log(e.response);
      
+      } else if (e.request) {
+          console.log(e.request);
+      } else {
+          console.log('Error', e.message);
+      }
+      // console.log(e.config);
+  }
+  }
+}
+export const translatedQuestionScience = (formValues) => {
+
+  return async function(dispatch) {
+    try {
+    var paymentRequest ={
+      CatID: formValues.catid,
+      Lang: formValues.lang
+    }
+    var config = {
+      method: 'POST',
+      url: `${BASE_URL}/OLQuestions`,
+      headers: {
+          'content-type': 'application/json'
+     
+      },
+      data: paymentRequest
+  };
+
+  const response = await axios(config)
+ 
+      dispatch({
+      type: SCIENCE_QUE,
+      payload: response.data
+      })
+    }catch (e) {
+      if (e.response) {
+          console.log(e.response);
+          // console.log(e.response.data.errors.message);
+          // console.log(error.response.status);
+          // console.log(error.response.headers);
       } else if (e.request) {
           console.log(e.request);
       } else {

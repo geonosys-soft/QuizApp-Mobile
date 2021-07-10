@@ -9,7 +9,7 @@ import {
   import { APP_FONT_FAMILY } from '../../config';
 
   import { connect } from 'react-redux';
-  import { questionsScience } from '../../actions/questions';
+  import { questionsScience, translatedQuestionScience } from '../../actions/questions';
   
   import ScienceScreen from './ScienceScreen';
 
@@ -37,22 +37,29 @@ import {
     }
 
     componentDidMount() {
-
-        const params = {
-            "catid": '3'
-        }
-        this.props.questionsScience(params);
+        
         this.setState({});
+
+        if(this.props.route.params.language !== 'ml') {
+            const params = {
+                "catid": '3'
+            }
+            this.props.questionsScience(params);
+        }else {
+             const params = {
+            "catid": '3',
+            lang: this.props.route.params.language
+        }
+        this.props.translatedQuestionScience(params);
     }
-    // get loaderStatus() {
-    //     return this.props.allquestions.questions;
-    //   }
+    }
+
     static getDerivedStateFromProps(nextProps, prevState) {
      
-        if(nextProps && nextProps.allquestions && 
-            nextProps.allquestions.scienceque) {
+        if(nextProps && nextProps.allquestions && nextProps.allquestions.length !== 0 &&
+            nextProps.allquestions.scienceque.length !== 0) {
                 qustionArray = nextProps.allquestions.scienceque;
-           
+                console.log("All props ? data", qustionArray);
             return {
                 allquestion: qustionArray,
                 scienceLoading: false
@@ -71,7 +78,7 @@ import {
 
 
     render() {
-        console.log("All props ? data", this.state.allquestion.length);
+       
         if(this.state.allquestion.length !== 10 ) {
         return(
             <LinearGradient colors={['#215caa', '#274d9f', '#2a3c93']} style = {{flex: 1,
@@ -105,4 +112,4 @@ import {
     }
 }
 
- export default connect(mapStateToProps, { questionsScience })(ScienceMainScreen);
+ export default connect(mapStateToProps, { questionsScience,translatedQuestionScience })(ScienceMainScreen);

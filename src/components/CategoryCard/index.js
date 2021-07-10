@@ -5,10 +5,11 @@ import { APP_FONT_FAMILY } from '../../config';
 class CategoryCard extends Component {
 
 render(){
+    var lang = this.props.languageValue;
     return(
        
         <TouchableOpacity 
-        onPress={() => {this.props.navigation.navigate(this.props.onPressItem)}}
+        onPress={() => {this.props.navigation.navigate(this.props.onPressItem,{language: lang})}}
         style={{
             flex: 1
         }}>

@@ -14,7 +14,25 @@ import Header from '../../components/Header';
 import CategoryCard from '../../components/CategoryCard';
 import images from '../../components/Images';
 
+import LanguagePicker from '../../components/LanguagePicker';
+
 class CategoryScreen extends Component {
+  constructor(props) {
+    super(props);
+     this.state = {
+      langData: ''
+
+     }
+     
+}
+
+languageData =(data)=> {
+
+  this.setState({
+    langData: data
+  })
+
+  }
   render() {
     return (
       <View style={{ flex: 1 }}>
@@ -38,12 +56,17 @@ class CategoryScreen extends Component {
           <ImageBackground source={require('../../assets/thrdScreen.png')}
             style={{
               flex: 1,
-              width: '100%',
-              height: '100%',
-              alignItems: 'center',
-              justifyContent: 'center'
+             
             }} >
-
+              <View style ={{
+                flex: 0.07,
+                justifyContent: 'flex-end',
+                alignItems: 'flex-end'
+              }}>
+                <LanguagePicker 
+                selectedLang = {this.languageData}
+                />
+              </View>
             <View style={{
               flex: 0.45,
               flexDirection: 'row',
@@ -54,6 +77,7 @@ class CategoryScreen extends Component {
                   textContent={'SPACE'}
                   imgSource={images.categoryImages.one}
                   onPressItem='SpaceScreen'
+                  languageValue = {this.state.langData}
                   navigation={this.props.navigation} />
               </View>
               <View style={[{ flex: 1, margin: '2%', paddingBottom: '1%' }, shadow]}>
@@ -61,6 +85,7 @@ class CategoryScreen extends Component {
                   textContent={'NATURE'}
                   imgSource={images.categoryImages.two} 
                   onPressItem='NatureScreen'
+                  languageValue = {this.state.langData}
                   navigation={this.props.navigation}/>
               </View>
 
@@ -71,6 +96,7 @@ class CategoryScreen extends Component {
                   textContent={'SCIENCE'}
                   imgSource={images.categoryImages.three} 
                   onPressItem='ScienceScreen'
+                  languageValue = {this.state.langData}
                   navigation={this.props.navigation}
                   />
               </View>
@@ -79,6 +105,7 @@ class CategoryScreen extends Component {
                   textContent={'HISTORY'}
                   imgSource={images.categoryImages.forth}
                   onPressItem={'HistoryScreen'}
+                  languageValue = {this.state.langData}
                   navigation={this.props.navigation} 
                   />
               </View>

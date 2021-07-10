@@ -1,4 +1,4 @@
-import {NEXT_QUESTION} from './type'
+import {NEXT_QUESTION, QUESTIONS, SCIENCE_QUE,HISTORY_QUE,NATURE_QUE} from './type'
 
 export const newCount = (count, questions) => {
     console.log("new count", count);
@@ -35,6 +35,42 @@ export const storeCleaner = () => {
    
     return {
         type: NEXT_QUESTION,
+        payload: []
+        
+    }
+}
+
+export const clearQuestions = () => {
+   
+    return {
+        type: QUESTIONS,
+        payload: []
+        
+    }
+}
+
+export const clearScienceQues = () => {
+   
+    return {
+        type: SCIENCE_QUE,
+        payload: []
+        
+    }
+}
+
+export const clearHistoryQues = () => {
+   
+    return {
+        type: HISTORY_QUE,
+        payload: []
+        
+    }
+}
+
+export const clearNatureQues = () => {
+   
+    return {
+        type: NATURE_QUE,
         payload: []
         
     }

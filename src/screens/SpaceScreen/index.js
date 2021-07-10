@@ -18,7 +18,7 @@ import { APP_FONT_FAMILY } from '../../config';
 
 import { connect } from 'react-redux';
 import { clearQuertion } from '../../actions/questions';
-import { newCount, storeCleaner } from '../../actions/nextQues';
+import { newCount, storeCleaner, clearQuestions } from '../../actions/nextQues';
 
 import Header from '../../components/Header';
 import SpaceButton from '../../components/SpaceButton';
@@ -207,6 +207,7 @@ class SpaceScreen extends Component {
     componentWillUnmount() {
         wrongAnsData = 1;
         this.props.storeCleaner()
+   
         clearInterval(this.interval);
     }
 
@@ -225,7 +226,7 @@ class SpaceScreen extends Component {
 }
 
     render() {
-        console.log("anser data===", wrongAnsData)
+      
         return (
             <View style={{ flex: 1 }}>
                 <View style={[{
@@ -486,4 +487,4 @@ const mapStateToProps = store => {
     }
 }
 
-export default connect(mapStateToProps, { newCount, storeCleaner })(SpaceScreen);
+export default connect(mapStateToProps, { newCount, storeCleaner, clearQuestions })(SpaceScreen);

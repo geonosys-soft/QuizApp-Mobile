@@ -264,6 +264,8 @@ PODS:
     - React-cxxreact (= 0.61.5)
     - React-jsi (= 0.61.5)
   - React-jsinspector (0.61.5)
+  - react-native-element-dropdown (1.1.13):
+    - React
   - react-native-netinfo (6.0.0):
     - React-Core
   - react-native-onesignal (4.1.1):
@@ -314,6 +316,8 @@ PODS:
     - React
   - RNCMaskedView (0.1.6):
     - React
+  - RNCPicker (1.16.3):
+    - React-Core
   - RNDeviceInfo (5.5.6):
     - React
   - RNFBApp (6.7.1):
@@ -355,6 +359,7 @@ DEPENDENCIES:
   - React-jsi (from `../node_modules/react-native/ReactCommon/jsi`)
   - React-jsiexecutor (from `../node_modules/react-native/ReactCommon/jsiexecutor`)
   - React-jsinspector (from `../node_modules/react-native/ReactCommon/jsinspector`)
+  - react-native-element-dropdown (from `../node_modules/react-native-element-dropdown`)
   - "react-native-netinfo (from `../node_modules/@react-native-community/netinfo`)"
   - react-native-onesignal (from `../node_modules/react-native-onesignal`)
   - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
@@ -373,6 +378,7 @@ DEPENDENCIES:
   - "RNAppleAuthentication (from `../node_modules/@invertase/react-native-apple-authentication`)"
   - "RNCAsyncStorage (from `../node_modules/@react-native-community/async-storage`)"
   - "RNCMaskedView (from `../node_modules/@react-native-community/masked-view`)"
+  - "RNCPicker (from `../node_modules/@react-native-picker/picker`)"
   - RNDeviceInfo (from `../node_modules/react-native-device-info`)
   - "RNFBApp (from `../node_modules/@react-native-firebase/app`)"
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
@@ -435,6 +441,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/jsiexecutor"
   React-jsinspector:
     :path: "../node_modules/react-native/ReactCommon/jsinspector"
+  react-native-element-dropdown:
+    :path: "../node_modules/react-native-element-dropdown"
   react-native-netinfo:
     :path: "../node_modules/@react-native-community/netinfo"
   react-native-onesignal:
@@ -469,6 +477,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/@react-native-community/async-storage"
   RNCMaskedView:
     :path: "../node_modules/@react-native-community/masked-view"
+  RNCPicker:
+    :path: "../node_modules/@react-native-picker/picker"
   RNDeviceInfo:
     :path: "../node_modules/react-native-device-info"
   RNFBApp:
@@ -521,6 +531,7 @@ SPEC CHECKSUMS:
   React-jsi: cb2cd74d7ccf4cffb071a46833613edc79cdf8f7
   React-jsiexecutor: d5525f9ed5f782fdbacb64b9b01a43a9323d2386
   React-jsinspector: fa0ecc501688c3c4c34f28834a76302233e29dc0
+  react-native-element-dropdown: ae529a5158f9840536e1a65c87a24c6adbc75a88
   react-native-netinfo: 34f4d7a42f49157f3b45c14217d256bce7dc9682
   react-native-onesignal: 9ec377a898663829f9c96997b73e77cb5bab05de
   react-native-safe-area-context: 042dfc9d4db17196841df962ba9497f6e7a5bd02
@@ -538,6 +549,7 @@ SPEC CHECKSUMS:
   RNAppleAuthentication: e95bcfbd044013667f35c5ca20ae17d39500c009
   RNCAsyncStorage: b16697280b08bab4b5f2f67f752d93d13a52e9ed
   RNCMaskedView: e5b99bc191945f157adeede68da9d424462de177
+  RNCPicker: 6724ab5fcca83c34fe1f18a89baa13e9885f0393
   RNDeviceInfo: c3ea4a4d4547740c548cdd1e5a78f9b04e524688
   RNFBApp: 7b539bb25520fa73d6a240f5c6ea569e27683645
   RNGestureHandler: dde546180bf24af0b5f737c8ad04b6f3fa51609a

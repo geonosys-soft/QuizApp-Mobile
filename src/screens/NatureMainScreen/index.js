@@ -16,7 +16,7 @@ import {
     DotIndicator
   } from 'react-native-indicators';
   import { connect } from 'react-redux';
-  import { questionsNature } from '../../actions/questions';
+  import { questionsNature, translatequestionsNature } from '../../actions/questions';
   import LinearGradient from 'react-native-linear-gradient';
   import NatureScreen from './NatureScreen';
 
@@ -39,17 +39,26 @@ import {
 
     componentDidMount() {
 
-        const params = {
-            "catid": '2'
+        if(this.props.route.params.language !== 'ml') {
+            const params = {
+                "catid": '2',
+            }
+            this.props.questionsNature(params);
+        }else {
+             const params = {
+            "catid": '2',
+            lang: this.props.route.params.language
         }
-        this.props.questionsNature(params);
+        this.props.translatequestionsNature(params);
+    }
     }
    
     static getDerivedStateFromProps(props, prevState) {
      
-        if(props && props.allquestions && props.allquestions.natureque) {
+        if(props && props.allquestions && props.allquestions.length !== 0 &&
+            props.allquestions.natureque.length !== 0) {
                 qustionArray = props.allquestions.natureque;
-           console.log("koman", qustionArray)
+        
             return {
                 allquestion: qustionArray,
                 initialLoading: false
@@ -90,4 +99,4 @@ import {
     }
 }
 
- export default connect(mapStateToProps, { questionsNature })(NatureMainScreen);
+ export default connect(mapStateToProps, { questionsNature, translatequestionsNature  })(NatureMainScreen);
