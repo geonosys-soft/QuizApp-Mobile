@@ -259,6 +259,7 @@ setInterval() {
                                  borderRadius: 6, 
                                  left: 10, 
                                  right: 5 }} >
+                        <ScrollView >
                             <View style={{
                                     flex: 0.10,
                      
@@ -267,11 +268,11 @@ setInterval() {
                                         color: '#fff',
                                         fontSize: 18,
                                         fontWeight: 'bold',
-                                        alignSelf: 'flex-end'
+                                        alignSelf: 'center'
                                     }}>00:{this.state.timer}</Text>
                                 </View>
                                 <Text style={{ 
-                                      marginTop: 80,
+                                      marginTop: 30,
                                       fontWeight: 'bold',
                                       fontSize: 18,
                                       flex: 0.8,
@@ -281,6 +282,7 @@ setInterval() {
                                       left: 2,
                                       right: 1
                                 }}>{this.state.questionData}</Text>
+                                </ScrollView>
                             </LinearGradient>
                         </View>
                         <View style={{ flex: 0.50, alignItems: 'center', justifyContent: 'center' }}>

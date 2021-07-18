@@ -254,6 +254,7 @@ class SpaceScreen extends Component {
                         <View style={{ flex: 0.40 }}>
 
                             <LinearGradient start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} colors={['#474747', '#312d2d', '#1b1515']} style={{ flex: 40, alignItems: 'center', justifyContent: 'center', margin: 20, borderWidth: 1, borderColor: '#000000', borderRadius: 6, }} >
+                            <ScrollView >
                             <View style={{
                                     flex: 0.10,
                      
@@ -262,11 +263,11 @@ class SpaceScreen extends Component {
                                         color: '#fff',
                                         fontSize: 18,
                                         fontWeight: 'bold',
-                                        alignSelf: 'flex-end'
+                                        alignSelf: 'center'
                                     }}>00:{this.state.timer}</Text>
                                 </View>
                                 <Text style={{
-                                    marginTop: 80,
+                                    marginTop: 30,
                                     fontWeight: 'bold',
                                     fontSize: 18,
                                     flex: 0.8,
@@ -277,6 +278,7 @@ class SpaceScreen extends Component {
                                     right: 1
 
                                 }}>{this.state.questionData}</Text>
+                                </ScrollView>
                             </LinearGradient>
                         </View>
                         <View style={{ flex: 0.50, alignItems: 'center', justifyContent: 'center' }}>
