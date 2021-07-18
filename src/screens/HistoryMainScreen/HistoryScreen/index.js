@@ -245,7 +245,20 @@ setInterval() {
                         </View>
                         <View style={{ flex: 0.40 }}>
 
-                            <LinearGradient start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} colors={['#474747', '#312d2d', '#1b1515']} style={{ flex: 40, alignItems: 'center', justifyContent: 'center', margin: 20, borderWidth: 1, borderColor: '#000000', borderRadius: 6, left: 10, right: 5 }} >
+                            <LinearGradient 
+                            start={{ x: 0, y: 0 }} 
+                            end={{ x: 1, y: 0 }} 
+                            colors={['#474747', '#312d2d', '#1b1515']} 
+                            style={{ 
+                                flex: 40, 
+                                alignItems: 'center', 
+                                justifyContent: 'center', 
+                                margin: 20, 
+                                borderWidth: 1, 
+                                borderColor: '#000000',
+                                 borderRadius: 6, 
+                                 left: 10, 
+                                 right: 5 }} >
                             <View style={{
                                     flex: 0.10,
                      

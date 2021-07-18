@@ -53,7 +53,8 @@ import {
         }else {
              const params = {
             "catid": '1',
-            lang: this.props.route.params.language
+            lang: this.props.route.params.language,
+            mark: this.props.totalScore
         }
         this.props.translatedQuestion(params);
     }
@@ -99,7 +100,8 @@ import {
   const mapStateToProps = store => {
     return {
         allquestions: store.questions,
-        answerS: store.questions.answer
+        answerS: store.questions.answer,
+        totalScore: store.totalScore.totalscore.Score
 
         
     }

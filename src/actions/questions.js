@@ -53,7 +53,8 @@ import {
       try {
       var paymentRequest ={
         CatID: formValues.catid,
-        Lang: formValues.lang
+        Lang: formValues.lang,
+        MARK: formValues.mark
       }
       var config = {
         method: 'POST',
@@ -173,7 +174,8 @@ export const translatequestionsNature = (formValues) => {
     try {
     var paymentRequest ={
       CatID: formValues.catid,
-      Lang: formValues.lang
+      Lang: formValues.lang,
+      MARK: formValues.mark
     }
     var config = {
       method: 'POST',
@@ -250,7 +252,8 @@ export const translatedquestionsHistory = (formValues) => {
     try {
     var paymentRequest ={
       CatID: formValues.catid,
-      Lang: formValues.lang
+      Lang: formValues.lang,
+      MARK: formValues.mark
     }
     var config = {
       method: 'POST',
@@ -324,7 +327,8 @@ export const translatedQuestionScience = (formValues) => {
     try {
     var paymentRequest ={
       CatID: formValues.catid,
-      Lang: formValues.lang
+      Lang: formValues.lang,
+      MARK: formValues.mark
     }
     var config = {
       method: 'POST',
