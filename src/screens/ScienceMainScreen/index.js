@@ -40,19 +40,26 @@ import {
         
         this.setState({});
 
-        if(this.props.route.params.language !== 'ml') {
-            const params = {
-                "catid": '3'
-            }
-            this.props.questionsScience(params);
-        }else {
-             const params = {
+        const params = {
             "catid": '3',
             lang: this.props.route.params.language,
             mark: this.props.totalScore
         }
         this.props.translatedQuestionScience(params);
-    }
+
+    //     if(this.props.route.params.language !== 'ml') {
+    //         const params = {
+    //             "catid": '3'
+    //         }
+    //         this.props.questionsScience(params);
+    //     }else {
+    //          const params = {
+    //         "catid": '3',
+    //         lang: this.props.route.params.language,
+    //         mark: this.props.totalScore
+    //     }
+    //     this.props.translatedQuestionScience(params);
+    // }
     }
 
     static getDerivedStateFromProps(nextProps, prevState) {

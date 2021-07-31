@@ -7,8 +7,8 @@ import { connect } from 'react-redux';
 const data = [
     {label: 'English', value: 'English', global: require('../../assets/globe.png'), langID: 'en'},
     {label: 'മലയാളം', value: 'മലയാളം', langID: 'ml'},
-    {label: 'हिंदी', value: 'हिंदी',langID: 'ml'},
-    {label: 'هندي', value: 'هندي',langID: 'ml'},
+    {label: 'हिंदी', value: 'हिंदी',langID: 'hi'},
+    // {label: 'هندي', value: 'هندي',langID: 'ml'},
    
 ];
 

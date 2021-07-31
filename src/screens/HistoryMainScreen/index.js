@@ -33,25 +33,31 @@ import {
     }
 
     componentDidMount() {
-
         const params = {
-            "catid": '4'
-        }
-        this.props.questionsHistory(params);
-
-        if(this.props.route.params.language !== 'ml') {
-            const params = {
-                "catid": '4'
-            }
-            this.props.questionsHistory(params);
-        }else {
-             const params = {
             "catid": '4',
             lang: this.props.route.params.language,
             mark: this.props.totalScore
         }
         this.props.translatedquestionsHistory(params);
-    }
+
+    //     const params = {
+    //         "catid": '4'
+    //     }
+    //     this.props.questionsHistory(params);
+
+    //     if(this.props.route.params.language !== 'ml') {
+    //         const params = {
+    //             "catid": '4'
+    //         }
+    //         this.props.questionsHistory(params);
+    //     }else {
+    //          const params = {
+    //         "catid": '4',
+    //         lang: this.props.route.params.language,
+    //         mark: this.props.totalScore
+    //     }
+    //     this.props.translatedquestionsHistory(params);
+    // }
     }
     
     static getDerivedStateFromProps(newProps, prevState) {

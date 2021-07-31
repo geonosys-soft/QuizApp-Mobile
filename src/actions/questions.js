@@ -187,7 +187,7 @@ export const translatequestionsNature = (formValues) => {
      
       data: paymentRequest
   };
-
+console.log("user info=====", paymentRequest)
   const response = await axios(config)
  
       dispatch({

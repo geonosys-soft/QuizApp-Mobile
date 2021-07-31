@@ -44,20 +44,26 @@ import {
     }
 
     componentDidMount() {
-       
-        if(this.props.route.params.language !== 'ml') {
-            const params = {
-                "catid": '1',
-            }
-            this.props.questions(params);
-        }else {
-             const params = {
+        const params = {
             "catid": '1',
             lang: this.props.route.params.language,
             mark: this.props.totalScore
         }
         this.props.translatedQuestion(params);
-    }
+       
+    //     if(this.props.route.params.language !== 'ml') {
+    //         const params = {
+    //             "catid": '1',
+    //         }
+    //         this.props.questions(params);
+    //     }else {
+    //          const params = {
+    //         "catid": '1',
+    //         lang: this.props.route.params.language,
+    //         mark: this.props.totalScore
+    //     }
+    //     this.props.translatedQuestion(params);
+    // }
     }
   
     static getDerivedStateFromProps(nextProps, prevState) {

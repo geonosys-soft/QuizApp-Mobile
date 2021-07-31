@@ -4,6 +4,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import AsyncStorage from '@react-native-community/async-storage';
 
 import { GoogleSignin } from '@react-native-community/google-signin';
+import appleAuth from '@invertase/react-native-apple-authentication'
 import { APP_FONT_FAMILY } from '../../config';
 import { normalize } from '../../Styles/normalize'
 
@@ -82,6 +83,29 @@ class Header extends Component {
           .done();
           
           }
+          signInApple =(nav) => {
+            return appleAuth.performRequest({
+              requestedOperation: appleAuth.Operation.LOGIN,
+              requestedScopes: [appleAuth.Scope.EMAIL, appleAuth.Scope.FULL_NAME],
+        
+            }).then(appleAuthRequestResponse => {
+              let { identityToken, email } = appleAuthRequestResponse;
+              var params = {
+                "email": email,
+                "name": null,
+                "photo": null,
+                "Device":"iOS",
+                "Deviceid":DeviceInfo.getDeviceId()
+              }
+             
+              AsyncStorage.setItem('user', identityToken)
+        
+              this.props.navigation.navigate('SettingsScreen')
+        
+              this.props.googleLogin(params)
+        
+            })
+          }
 
           render(){
               return(
@@ -126,7 +150,13 @@ class Header extends Component {
                             if(user){
                               this.props.navigation.navigate('SettingsScreen');
                             } else {
-                            this.signIn()
+                         
+                              if(Platform.OS === 'ios') {
+                                this.signInApple()
+                              } else {
+                                this.signIn()
+                              }
+                        
                             }
                             }}>
                           <Image source={require('../../assets/settingsIcon.png')} style={{ width: 70, height: 70}} />
