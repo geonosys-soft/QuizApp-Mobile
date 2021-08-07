@@ -4,7 +4,7 @@ import {
    } from './type';
 import Sound from 'react-native-sound';
 
-const audioItem = require('../assets/music/bg.mp3');
+const audioItem = require('../assets/music/bgLatest.mp3');
 const buttonClick = require('../assets/music/btnsound.wav');
 const correctAns = require('../assets/music/correct.wav');
 const wrongAns = require('../assets/music/wrongbg.wav');
