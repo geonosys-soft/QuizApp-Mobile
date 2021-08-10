@@ -8,7 +8,7 @@ import {
   
   export const totalScore = (formValues) => {
 
-   
+    
   
       return async function(dispatch) {
   
@@ -25,15 +25,14 @@ import {
               },
               data: paymentRequest
           };
-    
-          const response = await axios(config)
          
-          if(response.data.length !== 0) {
+          const response = await axios(config)
+        
               dispatch({
                 type: TOTAL_SCORE,
-                payload: response.data[0]
+                payload: response.data.length !== 0 ?response.data[0]: []
               })
-            }
+            
             }catch (e) {
               if (e.response) {
                   console.log(e.response);
@@ -150,5 +149,14 @@ export const totalScoreInstand = (formValues) => {
           }
           // console.log(e.config);
       }
+  }
+}
+
+export const clearScore = () => {
+   
+  return {
+      type: TOTAL_SCORE,
+      payload: []
+      
   }
 }

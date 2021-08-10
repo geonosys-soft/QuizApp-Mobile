@@ -137,7 +137,7 @@ class Header extends Component {
                           <Image source={ require('../../assets/Expert.png')} style={{ width: 70, height: 70}} />:
                           this.state.totalscore < 800 ?
                           <Image source={ require('../../assets/Ultra.png')} style={{ width: 70, height: 70}} />:
-                          <Image source={ require('../../assets/Beginner.png')} style={{ width: 70, height: 70}} />
+                          <Image source={ require('../../assets/beginer.png')} style={{ width: 70, height: 70}} />
                           }
                       </View>
                       <View style={{ flex: 0.35, alignItems: 'center', justifyContent: 'center'}}>

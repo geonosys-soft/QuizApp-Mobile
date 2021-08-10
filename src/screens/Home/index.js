@@ -10,39 +10,44 @@ import { connect } from 'react-redux';
 import { unregUser } from '../../actions/login';
 import { totalScore } from '../../actions/totalScore';
 import { newgame } from '../../actions/newgame';
- 
+
 class Home extends Component {
   
-  async componentDidMount() {
+  componentDidMount() {
 
-    try {
-      const user = await AsyncStorage.getItem('user');
-      if (user === null) {
-        // We have data!!
+    // try {
+    //   const user = await AsyncStorage.getItem('user');
+    //   if (user === null) {
+    //     // We have data!!
     
-        let deviceId = DeviceInfo.getDeviceId();
-        console.log("device",deviceId)
-        const params = {
-          "id": deviceId
-      }
-        this.props.unregUser(params)
+    //     let deviceId = DeviceInfo.getDeviceId();
+    //     console.log("device",deviceId)
+    //     const params = {
+    //       "id": deviceId
+    //   }
+    //     this.props.unregUser(params)
        
-      }
-      const value = await AsyncStorage.getItem('@LogId');
-     
-      if (value !== null) {
-        // We have data!!
-        console.log("Valuessss", value)
-        const params = {
-          "logid": value
-      }
-      this.props.totalScore(params);
-      }
+    //   }
+      
     
+    // } catch (error) {
+    //   // Error retrieving data
+    // }
+    this.totalScoreData()
+  }
 
-    } catch (error) {
-      // Error retrieving data
+  totalScoreData = async ()=> {
+    var value = await AsyncStorage.getItem('@LogId');
+     
+    if (value !== null) {
+      // We have data!!
+      console.log("Valuessss", value)
+      const params = {
+        "logid": value
     }
+    this.props.totalScore(params);
+    }
+    
 
   }
 

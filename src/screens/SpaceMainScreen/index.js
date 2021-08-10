@@ -37,7 +37,8 @@ import {
          this.state = {
              spaceQue: this.props && this.props.allquestions && this.props.allquestions.questions,
              initialLoading: true,
-             allData: []
+             allData: [],
+            
 
          }
          
@@ -67,9 +68,9 @@ import {
     }
   
     static getDerivedStateFromProps(nextProps, prevState) {
-        console.log("All props ? data", nextProps);
+       
      
-        if(nextProps && nextProps.allquestions && nextProps.allquestions.length !== 0 &&
+        if(nextProps && nextProps.route.params.language && nextProps.allquestions && nextProps.allquestions.length !== 0 &&
             nextProps.allquestions.questions.length !== 0) {
                 var qustionQ = nextProps.allquestions.questions;
                 console.log("All props ? data", qustionQ);

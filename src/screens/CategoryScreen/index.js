@@ -9,10 +9,12 @@ import {
   ImageBackground
 } from 'react-native';
 
+import { connect } from 'react-redux';
 
 import Header from '../../components/Header';
 import CategoryCard from '../../components/CategoryCard';
 import images from '../../components/Images';
+import {clearQuestions, clearScienceQues, clearHistoryQues, clearNatureQues} from '../../actions/nextQues';
 
 import LanguagePicker from '../../components/LanguagePicker';
 
@@ -20,7 +22,7 @@ class CategoryScreen extends Component {
   constructor(props) {
     super(props);
      this.state = {
-      langData: ''
+      langData: 'en'
 
      }
      
@@ -32,6 +34,12 @@ languageData =(data)=> {
     langData: data
   })
 
+  }
+  componentWillUnmount () {
+    this.props.clearQuestions();
+    this.props.clearNatureQues();
+    this.props.clearHistoryQues();
+    this.props.clearScienceQues();
   }
   render() {
     return (
@@ -146,4 +154,12 @@ var styles = StyleSheet.create({
     backgroundColor: 'transparent',
   },
 });
-export default CategoryScreen;
+const mapStateToProps = store => {
+  return {
+     
+
+      
+  }
+}
+
+export default connect(mapStateToProps, { clearQuestions,clearScienceQues,clearHistoryQues,clearNatureQues })(CategoryScreen);

@@ -22,6 +22,7 @@ import SubmitButton from '../../components/SubmitButton';
 import DeviceInfo from 'react-native-device-info'
 import OneSignal from 'react-native-onesignal';
 import axios from 'axios';
+import { unregUser } from '../../actions/login';
 
 class IntroductionScreen extends Component {
 
@@ -97,6 +98,24 @@ class IntroductionScreen extends Component {
        this.setState({ isversion: true });
       }
     })
+    try {
+      const user = await AsyncStorage.getItem('user');
+      if (user === null) {
+        // We have data!!
+    
+        let deviceId = DeviceInfo.getDeviceId();
+        console.log("device",deviceId)
+        const params = {
+          "id": deviceId
+      }
+        this.props.unregUser(params)
+       
+      }
+      
+    
+    } catch (error) {
+      // Error retrieving data
+    }
     
   }
 
@@ -369,4 +388,4 @@ const mapStateToProps = store => {
   }
 }
 
-export default connect(mapStateToProps, { googleLogin, play, stop, version })(IntroductionScreen);
+export default connect(mapStateToProps, { googleLogin, play, stop, version, unregUser })(IntroductionScreen);

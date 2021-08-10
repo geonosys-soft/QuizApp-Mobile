@@ -18,7 +18,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 import { connect } from 'react-redux';
 import { play } from '../../actions/suond';
 import { stop } from '../../actions/suond';
-
+import { clearScore } from '../../actions/totalScore';
 
 class SettingsScreen extends Component {
 
@@ -222,6 +222,7 @@ class SettingsScreen extends Component {
                           await GoogleSignin.signOut();
                           await AsyncStorage.removeItem('user')
                           this.props.navigation.pop();
+                          this.props.clearScore();
                         } catch (error) {
                           console.error(error);
                         }
@@ -258,5 +259,5 @@ const mapStateToProps = store => {
   }
 }
 
-export default connect(mapStateToProps, { play, stop })(SettingsScreen);
+export default connect(mapStateToProps, { play, stop, clearScore })(SettingsScreen);
 
