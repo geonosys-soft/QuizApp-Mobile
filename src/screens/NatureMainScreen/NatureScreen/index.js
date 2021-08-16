@@ -61,7 +61,7 @@ class NatureScreen extends Component {
     componentDidMount() {
 
         data = this.props.data;
-        console.log("all data", data);
+
         if (data.length !== 0) {
             question = data[0].Question;
             optionA = data[0].OPA;
@@ -104,13 +104,13 @@ class NatureScreen extends Component {
             isMenuVisible: value,
             invisibleModal: false
         })
-        setTimeout(() => {
-   
-            if (wrongAnsData ===10) {
-                this.wrongClose()
-                this.props.navigation.navigate("SuccessScreen");
-            }
-        }, 2000);
+        // setTimeout(() => {
+
+        //     if (wrongAnsData ===10) {
+        //         this.wrongClose()
+        //         this.props.navigation.navigate("SuccessScreen");
+        //     }
+        // }, 2000);
     }
     correctAns = (value, count) => {
         this.setState({
@@ -119,7 +119,7 @@ class NatureScreen extends Component {
         })
         setTimeout(() => {
             this.closModal()
-            if (wrongAnsData ===11) {
+            if (wrongAnsData === 11) {
                 this.props.navigation.navigate("SuccessScreen");
             }
         }, 2000);
@@ -130,14 +130,14 @@ class NatureScreen extends Component {
             isCorrectAns: false
         })
     }
-    btnWas =()=> {
+    btnWas = () => {
         this.setState({
             invisibleModal: true,
             timer: 60
         })
     }
 
-    wrongClose =()=> {
+    wrongClose = () => {
         this.setState({
             isMenuVisible: false,
             timer: 60
@@ -146,12 +146,12 @@ class NatureScreen extends Component {
 
     nextqus = () => {
         next = wrongAnsData++;
-        
-        if(next === 11){
-            this.props.navigation.navigate("SuccessScreen");
-        }else {
+
+        if (next === 11) {
+            //  this.props.navigation.navigate("SuccessScreen");
+        } else {
             this.setState({
-                
+
                 timer: 60
             })
             this.props.newCount(next, data);
@@ -168,10 +168,12 @@ class NatureScreen extends Component {
 
     nextqusWrng = () => {
         next = wrongAnsData++;
-        if(next === 11){
-            this.props.navigation.navigate("SuccessScreen");
-        }else {
+
+        if (next === 11) {
+            //  this.props.navigation.navigate("SuccessScreen");
+        } else {
             this.props.newCount(next, data);
+            this.setState({ timer: 60 })
         }
 
 
@@ -182,14 +184,14 @@ class NatureScreen extends Component {
             clearInterval(this.interval);
             // this.setState({isDisable:true})
             next = wrongAnsData++;
-            if (next != 11) {
+            if (next !== 11) {
                 this.setState({ timer: 60 })
                 this.setInterval();
                 this.props.newCount(next, data);
-            } 
+            }
         }
-    
-}
+
+    }
     static getDerivedStateFromProps(nextProps, prevState) {
 
         if (nextProps && nextProps.nextQues && nextProps.nextQues.length !== 0) {
@@ -216,7 +218,7 @@ class NatureScreen extends Component {
 
 
     render() {
-     
+
         return (
             <View style={{ flex: 1 }}>
                 <View style={[{
@@ -244,30 +246,30 @@ class NatureScreen extends Component {
                         <View style={{ flex: 0.40 }}>
 
                             <LinearGradient start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} colors={['#474747', '#312d2d', '#1b1515']} style={{ flex: 40, alignItems: 'center', justifyContent: 'center', margin: 20, borderWidth: 1, borderColor: '#000000', borderRadius: 6, left: 10, right: 5 }} >
-                            <ScrollView >
-                            <View style={{
-                                    flex: 0.10,
-                     
-                                }}>
+                                <ScrollView >
+                                    <View style={{
+                                        flex: 0.10,
 
+                                    }}>
+
+                                        <Text style={{
+                                            color: '#fff',
+                                            fontSize: 18,
+                                            fontWeight: 'bold',
+                                            alignSelf: 'center'
+                                        }}>00:{this.state.timer}</Text>
+                                    </View>
                                     <Text style={{
-                                        color: '#fff',
-                                        fontSize: 18,
+                                        marginTop: 30,
                                         fontWeight: 'bold',
-                                        alignSelf: 'center'
-                                    }}>00:{this.state.timer}</Text>
-                                </View>
-                                <Text style={{ 
-                                      marginTop: 30,
-                                      fontWeight: 'bold',
-                                      fontSize: 18,
-                                      flex: 0.8,
-                                      color: 'white',
-                                      textAlign: 'center',
-                                      flexWrap: 'wrap',
-                                      left: 2,
-                                      right: 1
-                                 }}>{this.state.questionData}</Text>
+                                        fontSize: 18,
+                                        flex: 0.8,
+                                        color: 'white',
+                                        textAlign: 'center',
+                                        flexWrap: 'wrap',
+                                        left: 2,
+                                        right: 1
+                                    }}>{this.state.questionData}</Text>
                                 </ScrollView>
                             </LinearGradient>
                         </View>
@@ -287,7 +289,7 @@ class NatureScreen extends Component {
                                     catID={2}
                                     wrongans={this.wrongAns}
                                     correctans={this.correctAns}
-                                    btnClicker = {this.btnWas}
+                                    btnClicker={this.btnWas}
 
                                 />
                             </View>
@@ -307,7 +309,7 @@ class NatureScreen extends Component {
                                     catID={2}
                                     wrongans={this.wrongAns}
                                     correctans={this.correctAns}
-                                    btnClicker = {this.btnWas}
+                                    btnClicker={this.btnWas}
                                 />
                             </View>
                             <View style={[{ flex: 1 }, shadowSB]}>
@@ -325,7 +327,7 @@ class NatureScreen extends Component {
                                     catID={2}
                                     wrongans={this.wrongAns}
                                     correctans={this.correctAns}
-                                    btnClicker = {this.btnWas}
+                                    btnClicker={this.btnWas}
                                 />
                             </View>
                             <View style={[{ flex: 1 }, shadowSB]}>
@@ -343,7 +345,7 @@ class NatureScreen extends Component {
                                     catID={2}
                                     wrongans={this.wrongAns}
                                     correctans={this.correctAns}
-                                    btnClicker = {this.btnWas}
+                                    btnClicker={this.btnWas}
                                 />
                             </View>
                         </View>
@@ -358,7 +360,7 @@ class NatureScreen extends Component {
                     transparent={true}
                     visible={this.state.isMenuVisible}
                     animationInTiming={1200}
-                   >
+                >
                     <ImageBackground
                         source={require('../../../assets/wrongans.png')}
                         resizeMode='cover'
@@ -375,20 +377,20 @@ class NatureScreen extends Component {
                             justifyContent: 'center',
                             alignItems: 'center',
                             marginTop: 200,
-                            
+
 
                         }}>
+                            {next !== 9 ?
+                                <ModalButton
+                                    firstColor='#788bfe'
+                                    middelColor='#6db5ff'
+                                    endColor='#62dfff'
+                                    name={'next question'}
+                                    nextquest={this.nextqusWrng}
+                                    counter={wrongAnsData}
+                                    modalstatus={this.modalStatus}
 
-                            <ModalButton
-                                firstColor='#788bfe'
-                                middelColor='#6db5ff'
-                                endColor='#62dfff'
-                                name={'next question'}
-                                nextquest={this.nextqusWrng}
-                                counter={wrongAnsData}
-                                modalstatus={this.modalStatus}
-
-                            />
+                                /> : null}
                             <View style={{
 
                                 marginTop: 60,
@@ -419,7 +421,7 @@ class NatureScreen extends Component {
                     transparent={true}
                     visible={this.state.isCorrectAns}
                     animationInTiming={1200}
-                   >
+                >
                     <TouchableOpacity onPress={() => {
                         this.setState({
                             isCorrectAns: false
@@ -437,17 +439,17 @@ class NatureScreen extends Component {
 
                     </TouchableOpacity>
                 </Modal>
- {/* asnswer time */}
- <Modal
-            animationType = {"slide"}
-            transparent={true}
-            visible={this.state.invisibleModal}
-            animationInTiming={1200}
-            onRequestClose={() => {
-         
-            }}>
+                {/* asnswer time */}
+                <Modal
+                    animationType={"slide"}
+                    transparent={true}
+                    visible={this.state.invisibleModal}
+                    animationInTiming={1200}
+                    onRequestClose={() => {
 
-            </Modal>
+                    }}>
+
+                </Modal>
             </View>
         )
     }

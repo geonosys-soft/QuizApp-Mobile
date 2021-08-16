@@ -67,7 +67,7 @@ import {
         if(nextProps && nextProps.allquestions && nextProps.allquestions.length !== 0 &&
             nextProps.allquestions.scienceque.length !== 0) {
                 qustionArray = nextProps.allquestions.scienceque;
-                console.log("All props ? data", qustionArray);
+              
             return {
                 allquestion: qustionArray,
                 scienceLoading: false

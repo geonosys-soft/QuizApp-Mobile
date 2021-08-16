@@ -124,14 +124,14 @@ class SpaceScreen extends Component {
             isMenuVisible: value,
             invisibleModal: false
         })
-        setTimeout(() => {
-            // this.wrongClose()
+        // setTimeout(() => {
+        //     // this.wrongClose()
 
-            if (wrongAnsData === 10) {
-                this.wrongClose()
-                this.props.navigation.navigate("SuccessScreen");
-            }
-        }, 2000);
+        //     if (wrongAnsData === 10) {
+        //         this.wrongClose()
+        //         this.props.navigation.navigate("SuccessScreen");
+        //     }
+        // }, 2000);
     }
     correctAns = (value, count) => {
         this.setState({
@@ -152,7 +152,7 @@ class SpaceScreen extends Component {
         next = wrongAnsData++;
 
         if (next === 11) {
-            this.props.navigation.navigate("SuccessScreen");
+            // this.props.navigation.navigate("SuccessScreen");
         } else {
             this.setState({
                 
@@ -178,10 +178,14 @@ class SpaceScreen extends Component {
 
     nextqusWrng = () => {
         next = wrongAnsData++;
+        // if(next !== 11){
+        //     this.props.newCount(next, data);
+        // }
         if (next === 11) {
-            this.props.navigation.navigate("SuccessScreen");
+           // this.props.navigation.navigate("SuccessScreen");
         } else {
             this.props.newCount(next, data);
+            this.setState({ timer: 60 })
         }
     }
 
@@ -216,7 +220,7 @@ class SpaceScreen extends Component {
             clearInterval(this.interval);
             // this.setState({isDisable:true})
             next = wrongAnsData++;
-            if (next != 11) {
+            if (next !== 11) {
                 this.setState({ timer: 60 })
                 this.setInterval();
                 this.props.newCount(next, data);
@@ -386,7 +390,7 @@ class SpaceScreen extends Component {
                             
 
                         }}>
-
+                            {next !== 9 ?
                             <ModalButton
                                 firstColor='#788bfe'
                                 middelColor='#6db5ff'
@@ -396,7 +400,7 @@ class SpaceScreen extends Component {
                                 counter={wrongAnsData}
                                 modalstatus={this.modalStatus}
 
-                            />
+                            /> : null}
                             <View style={{
 
                                 marginTop: 60,

@@ -41,7 +41,7 @@ class Home extends Component {
      
     if (value !== null) {
       // We have data!!
-      console.log("Valuessss", value)
+     
       const params = {
         "logid": value
     }

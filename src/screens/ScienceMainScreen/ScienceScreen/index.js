@@ -68,7 +68,7 @@ class ScienceScreen extends Component {
 
         data = this.props.data;
 
-        console.log("all data =====", data);
+
         if (data.length !== 0) {
             question = data[0].Question;
             optionA = data[0].OPA;
@@ -93,7 +93,7 @@ class ScienceScreen extends Component {
         this.setInterval();
 
     }
- 
+
     setInterval() {
         this.interval = setInterval(
             () => this.setState((prevState) => ({ timer: prevState.timer - 1 })),
@@ -113,20 +113,20 @@ class ScienceScreen extends Component {
             invisibleModal: false,
         })
 
-        setTimeout(() => {
+        // setTimeout(() => {
 
-            if (wrongAnsData === 10) {
-                this.wrongClose()
-                this.props.navigation.navigate("SuccessScreen");
-            }
-        }, 2000);
+        //     if (wrongAnsData === 10) {
+        //         this.wrongClose()
+        //         this.props.navigation.navigate("SuccessScreen");
+        //     }
+        // }, 2000);
     }
     correctAns = (value, count) => {
         this.setState({
             isCorrectAns: value,
             invisibleModal: false,
         })
-        
+
         setTimeout(() => {
             this.closModal()
             if (wrongAnsData === 11) {
@@ -150,13 +150,13 @@ class ScienceScreen extends Component {
     nextqus = () => {
         next = wrongAnsData++;
         if (next === 11) {
-            this.props.navigation.navigate("SuccessScreen");
+          //  this.props.navigation.navigate("SuccessScreen");
         } else {
             this.setState({
-                
+
                 timer: 60
             })
-       
+
             this.props.newCount(next, data);
         }
 
@@ -176,41 +176,43 @@ class ScienceScreen extends Component {
 
     nextqusWrng = () => {
         next = wrongAnsData++;
+
         if (next === 11) {
-            this.props.navigation.navigate("SuccessScreen");
+            //this.props.navigation.navigate("SuccessScreen");
         } else {
             this.props.newCount(next, data);
+            this.setState({ timer: 60 })
         }
 
     }
 
-    
-        componentDidUpdate() {
-            if (this.state.timer === 0) {
-                clearInterval(this.interval);
-                // this.setState({isDisable:true})
-                next = wrongAnsData++;
-                if (next != 11) {
-                    this.setState({ timer: 60 })
-                    this.setInterval();
-                    this.props.newCount(next, data);
-                } 
+
+    componentDidUpdate() {
+        if (this.state.timer === 0) {
+            clearInterval(this.interval);
+            // this.setState({isDisable:true})
+            next = wrongAnsData++;
+            if (next !== 11) {
+                this.setState({ timer: 60 })
+                this.setInterval();
+                this.props.newCount(next, data);
             }
-        
+        }
+
     }
 
     static getDerivedStateFromProps(nextProps, prevState) {
 
         if (nextProps && nextProps.nextQues && nextProps.nextQues.length !== 0) {
-         
+
             var nextQuestion = nextProps.nextQues.questionData;
             var nextOptA = nextProps.nextQues.optA;
             var nextOptB = nextProps.nextQues.optB;
             var nextOptC = nextProps.nextQues.optC;
             var nextOptD = nextProps.nextQues.optD;
             var nextAns = nextProps.nextQues.answerOtn;
-            var correctMark  = nextProps.nextQues.markData;
-            var wrongMark  = nextProps.nextQues.nmarkData;
+            var correctMark = nextProps.nextQues.markData;
+            var wrongMark = nextProps.nextQues.nmarkData;
 
             return {
 
@@ -263,30 +265,30 @@ class ScienceScreen extends Component {
                         <View style={{ flex: 0.40 }}>
 
                             <LinearGradient start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} colors={['#474747', '#312d2d', '#1b1515']} style={{ flex: 40, alignItems: 'center', justifyContent: 'center', margin: 20, borderWidth: 1, borderColor: '#000000', borderRadius: 6, left: 10, right: 5 }} >
-                            <ScrollView >
-                                <View style={{
-                                    flex: 0.10,
-                     
-                                }}>
+                                <ScrollView >
+                                    <View style={{
+                                        flex: 0.10,
+
+                                    }}>
+                                        <Text style={{
+                                            color: '#fff',
+                                            fontSize: 18,
+                                            fontWeight: 'bold',
+                                            alignSelf: 'center'
+                                        }}>00:{this.state.timer}</Text>
+                                    </View>
                                     <Text style={{
-                                        color: '#fff',
-                                        fontSize: 18,
+                                        marginTop: 30,
                                         fontWeight: 'bold',
-                                        alignSelf: 'center'
-                                    }}>00:{this.state.timer}</Text>
-                                </View>
-                                <Text style={{
-                                    marginTop: 30,
-                                    fontWeight: 'bold',
-                                    fontSize: 18,
-                                    flex: 0.8,
-                                    color: 'white',
-                                    textAlign: 'center',
-                                    flexWrap: 'wrap',
-                                    left: 2,
-                                    right: 1
-                                }}>{this.state.questionData}</Text>
-                             </ScrollView>
+                                        fontSize: 18,
+                                        flex: 0.8,
+                                        color: 'white',
+                                        textAlign: 'center',
+                                        flexWrap: 'wrap',
+                                        left: 2,
+                                        right: 1
+                                    }}>{this.state.questionData}</Text>
+                                </ScrollView>
                             </LinearGradient>
                         </View>
                         <View style={{ flex: 0.50, alignItems: 'center', justifyContent: 'center' }}>
@@ -374,7 +376,7 @@ class ScienceScreen extends Component {
                     transparent={true}
                     visible={this.state.isMenuVisible}
                     animationInTiming={1200}
-                   >
+                >
                     <ImageBackground
                         source={require('../../../assets/wrongans.png')}
                         resizeMode='cover'
@@ -391,20 +393,20 @@ class ScienceScreen extends Component {
                             justifyContent: 'center',
                             alignItems: 'center',
                             marginTop: 200,
-                            
+
 
                         }}>
+                            {next !== 9 ?
+                                <ModalButton
+                                    firstColor='#788bfe'
+                                    middelColor='#6db5ff'
+                                    endColor='#62dfff'
+                                    name={'next question'}
+                                    nextquest={this.nextqusWrng}
+                                    counter={wrongAnsData}
+                                    modalstatus={this.modalStatus}
 
-                            <ModalButton
-                                firstColor='#788bfe'
-                                middelColor='#6db5ff'
-                                endColor='#62dfff'
-                                name={'next question'}
-                                nextquest={this.nextqusWrng}
-                                counter={wrongAnsData}
-                                modalstatus={this.modalStatus}
-
-                            />
+                                /> : null}
                             <View style={{
 
                                 marginTop: 60,

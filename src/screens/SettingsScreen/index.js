@@ -24,7 +24,7 @@ class SettingsScreen extends Component {
 
   state = {
     modalVisible: true,
-    isEnabled: false
+    isEnabled: this.props.stopSound.stopSound !== "play"? false: true
   };
   setModalVisible = () => {
     this.setState({ modalVisible: false });
@@ -253,7 +253,7 @@ const mapStateToProps = store => {
   return {
 
     playSound: store.sound.playSound,
-    stopSound: store.sound.stopSound
+    stopSound: store.sound
 
 
   }

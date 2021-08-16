@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, ImageBackground, StyleSheet, Image, TouchableOpacity, Text, AppState, Modal, Platform, Linking } from 'react-native';
+import { View, ImageBackground, StyleSheet, Image, TouchableOpacity, Text, AppState, Modal, Platform, Linking, ActivityIndicator } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import { APP_FONT_FAMILY } from '../../config';
 import { GoogleSignin } from '@react-native-community/google-signin';
@@ -23,7 +23,8 @@ import DeviceInfo from 'react-native-device-info'
 import OneSignal from 'react-native-onesignal';
 import axios from 'axios';
 import { unregUser } from '../../actions/login';
-
+import Loader from '../../components/Loader';
+var user, userLoged;
 class IntroductionScreen extends Component {
 
   constructor(props) {
@@ -35,7 +36,8 @@ class IntroductionScreen extends Component {
       appState: AppState.currentState,
       appVersion: '',
       mobileVersion: DeviceInfo.getVersion(),
-      userdata: ''
+      userdata: '',
+      loading: true
     }
     
   }
@@ -43,7 +45,23 @@ class IntroductionScreen extends Component {
   
 
   async componentDidMount() {
-
+    this.props.play()
+    try {
+      userLoged =  await AsyncStorage.getItem('@LogId');
+   
+      if (userLoged === null) {
+        // We have data!!
+    
+    
+        console.log("device",userLoged)
+       
+       
+      }
+      
+    
+    } catch (error) {
+      // Error retrieving data
+    }
    
     AppState.addEventListener('change', this._handleAppStateChange);
        /* O N E S I G N A L   S E T U P */
@@ -79,9 +97,8 @@ class IntroductionScreen extends Component {
  
     
 
-    let deviceId = DeviceInfo.getDeviceId();
-    console.log("device", deviceId)
-    console.log("user data=====", DeviceInfo.getVersion())
+ 
+   
 
     GoogleSignin.configure({
 
@@ -99,7 +116,8 @@ class IntroductionScreen extends Component {
       }
     })
     try {
-      const user = await AsyncStorage.getItem('user');
+      userLoged =  await AsyncStorage.getItem('@LogId');
+     user = await AsyncStorage.getItem('user');
       if (user === null) {
         // We have data!!
     
@@ -177,7 +195,7 @@ class IntroductionScreen extends Component {
         "Device":"iOS",
         "Deviceid":DeviceInfo.getDeviceId()
       }
-      console.log("param ====", identityToken)
+     
       AsyncStorage.setItem('user', identityToken)
 
       this.props.navigation.navigate(nav)
@@ -187,8 +205,21 @@ class IntroductionScreen extends Component {
     })
   }
 
+  static getDerivedStateFromProps(nextProps, prevState) {
+
+    if (nextProps && nextProps.showLoader !== true) {
+      console.log("end user ===", nextProps.showLoader)
+        return {
+
+            loading: nextProps.showLoader
+
+        }
+    }
+}
+
   render() {
-    console.log("check maadu", this.state.appVersion)
+    
+   console.log("login useer ====", user)
     return (
       <ImageBackground
         style={{
@@ -253,7 +284,7 @@ class IntroductionScreen extends Component {
               shadowRadius: 1,
               elevation: 2,
             }, shadow]}>
-
+{/* {this.props.showLoader !== false || user !== null  ? */}
               <SubmitButton
                 firstColor='#fd8d18'
                 middelColor='#ff7513'
@@ -262,7 +293,7 @@ class IntroductionScreen extends Component {
                 onPressItem='Home'
                 navigation={this.props.navigation}
               />
-
+{/* : null } */}
             </View>
 
           </View>
@@ -290,6 +321,7 @@ class IntroductionScreen extends Component {
               </TouchableOpacity>
             </View>
           </View>
+      
         </View>
         
         <Modal
@@ -345,7 +377,28 @@ class IntroductionScreen extends Component {
 
               </View>
         </Modal> 
+        {userLoged === undefined && user === undefined ?
+        <Modal
+            animationType = {"slide"}
+            transparent
+            style={{backgroundColor: 'rgba(0, 0, 0, 11'}}
+            visible={this.state.loading}
+            animationInTiming={1200}
+            onRequestClose={() => {
+         
+            }}>
+              <View style={{
+                flex: 1,
+                justifyContent: 'center',
+                alignItems: 'center'
+              }}>
+                
+                        <ActivityIndicator color="white" animating size="large" />
+                
 
+              </View>
+        </Modal> : null}
+        {/* {this.props.showLoader === false ? <Loader /> : null} */}
       </ImageBackground>
     )
   }
@@ -383,7 +436,8 @@ const mapStateToProps = store => {
     loginStatus: store.login,
     playSound: store.sound.playSound,
     stopSound: store.sound.stopSound,
-    version: store.versionupgrade
+    version: store.versionupgrade,
+    showLoader: store.login.showLoader
 
   }
 }

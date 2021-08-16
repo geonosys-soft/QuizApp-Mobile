@@ -5,6 +5,7 @@ import {
   GOOGLE_LOGIN,
   UNREG_USER,
   TOTAL_SCORE,
+  SHOW_LOADER
  } from './type';
 import api from '../services/api';
 import AsyncStorage from '@react-native-community/async-storage';
@@ -68,6 +69,7 @@ export const googleLogin = (formValues) => {
      response.data[0].LogID
     );
     if(response.data.length !== 0){
+      dispatch(toggleLoader(false))
       dispatch(totalScore(response.data[0].LogID))
     }
 
@@ -104,6 +106,7 @@ export const unregUser = (formValues) => {
         type: GOOGLE_LOGIN,
         payload: response.data
       })
+      dispatch(toggleLoader(false))
     }
 
 
@@ -175,3 +178,10 @@ export const userDetials = (formValues) => {
     })
   }
 }
+
+export const toggleLoader = (info) => (
+  {
+      type: SHOW_LOADER,
+      payload: info
+  }
+)

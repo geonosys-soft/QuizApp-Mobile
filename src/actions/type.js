@@ -24,3 +24,4 @@ export const HISTORY_QUE = 'HISTORY_QUE';
 export const SCIENCE_QUE = 'SCIENCE_QUE';
 export const VERSION = 'VERSION';
 export const NEXT_QUESTION = 'NEXT_QUESTION';
+export const SHOW_LOADER = 'SHOW_LOADER';

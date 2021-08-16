@@ -2,10 +2,20 @@ import {
   LOGIN_OPE,
   SIGN_UP,
   USER_DETAILS,
-  GOOGLE_LOGIN
+  GOOGLE_LOGIN,
+  SHOW_LOADER
  } from '../actions/type';
 
-export default (state = [], action) => {
+ const initialState = {
+  login: [],
+  signup: [],
+  loginsucess:[],
+  userDetails:[],
+  showLoader: true
+
+ }
+
+export default (state = initialState, action) => {
 
     switch (action.type) {
       
@@ -25,6 +35,11 @@ export default (state = [], action) => {
               return {
                 userDetails: action.payload
               }
+              case SHOW_LOADER:
+                return {
+                    ...state,
+                    showLoader: action.payload
+                }
         default:
             return state;
     }

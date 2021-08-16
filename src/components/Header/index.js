@@ -130,13 +130,37 @@ class Header extends Component {
                         {this.state.totalscore <= 200?
                           <Image source={ require('../../assets/beginer.png')} style={{ width: 70, height: 70}} />:
                           this.state.totalscore <= 400?
-                          <Image source={ require('../../assets/Great.png')} style={{ width: 70, height: 70}} />:
+                          <View style={{
+                            width: 60,
+                            height: 60,
+                            backgroundColor: 'white',
+                            borderRadius: 60/2
+                            
+                          }}>
+                           
+                           
+                          <Image source={ require('../../assets/bronz.png')} style={{ width: 60, height: 60, resizeMode: 'contain'}} />
+                          </View>:
                           this.state.totalscore <= 600?
-                          <Image source={ require('../../assets/Master.png')} style={{ width: 70, height: 70}} />:
-                          this.state.totalscore <= 700 ?
-                          <Image source={ require('../../assets/Expert.png')} style={{ width: 70, height: 70}} />:
-                          this.state.totalscore < 800 ?
-                          <Image source={ require('../../assets/Ultra.png')} style={{ width: 70, height: 70}} />:
+                          <View style={{
+                            width: 60,
+                            height: 60,
+                            backgroundColor: 'white',
+                            borderRadius: 60/2
+                            
+                          }}>
+                          <Image source={ require('../../assets/silver.png')} style={{ width: 60, height: 60, resizeMode: 'contain'}} />
+                          </View>:
+                          this.state.totalscore < 700 ?
+                          <View style={{
+                            width: 60,
+                            height: 60,
+                            backgroundColor: 'white', 
+                            borderRadius: 60/2
+                            
+                          }}>
+                          <Image source={ require('../../assets/golden.png')} style={{ width: 60, height: 60, resizeMode: 'contain'}} />
+                          </View>:
                           <Image source={ require('../../assets/beginer.png')} style={{ width: 70, height: 70}} />
                           }
                       </View>
