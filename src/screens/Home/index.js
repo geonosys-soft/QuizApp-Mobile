@@ -86,6 +86,7 @@ class Home extends Component {
               endColor='#fc7251'
               name='MULTI PLAYER' />
               </View> */}
+              {this.props.newScore && this.props.newScore.length !==0 ?
               <View style={[{ flex: 0.20, margin: 13, padding: Platform.OS === 'android'? 10: 0 }, shadow]}>
               <SubmitButton
               firstColor='#fd8d18'
@@ -96,7 +97,7 @@ class Home extends Component {
               navigation={this.props.navigation}
               gaming={'New_Game'}
               />
-              </View>
+              </View>:null}
       
             </View>
   
@@ -133,7 +134,8 @@ let styles = StyleSheet.create({
   const mapStateToProps = store => {
     return {
       loginStatus: store.login,
-      newgame: store.newgame.newgame
+      newgame: store.newgame.newgame,
+      newScore: store.totalScore.totalscore
         
     }
   }
